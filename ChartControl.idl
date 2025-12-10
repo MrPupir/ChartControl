@@ -1,0 +1,54 @@
+﻿#include <olectl.h>
+#include <idispids.h>
+
+[uuid(b8c8cf12-b964-479f-86b6-db2aad991bd5), version(1.0),
+control]
+library ChartControlLib
+{
+	importlib(STDOLE_TLB);
+
+	[
+		uuid(87610429-08e2-4a0c-b718-84fe61c2e445)
+	]
+		dispinterface _DChartControl
+	{
+		properties:
+			[id(7)] BSTR ChartTitle;
+			[id(8)] boolean ShowLabels;
+			[id(9)] double CoefA;
+			[id(10)] double CoefB;
+			[id(2)] VARIANT Colors;
+			[id(11)] boolean Enable3D;
+			[id(12)] boolean ShowGrid;
+			[id(13)] OLE_COLOR GridColor;
+			[id(14)] OLE_COLOR AxisColor;
+			[id(15)] OLE_COLOR BackColor;
+		methods:
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+			[id(1)] void Clear();
+			[id(3)] void LoadData(VARIANT varRows);
+			[id(5)] void ExportToExcel();
+			[id(6)] void ExportToWord();
+			[id(16)] void Sort(boolean asc); 
+	};
+
+	[
+		uuid(8e67e331-fe8c-4e5d-a764-692d38a6840d)
+	]
+		dispinterface _DChartControlEvents
+	{
+		properties:
+		methods:
+			[id(1)] void OnChartClick();
+			[id(2)] void OnExportFinished();
+	};
+
+	[
+		uuid(c9c6d8d6-5d04-4057-b851-3870f083e2b9)
+	]
+		coclass ChartControl
+	{
+		[default] dispinterface _DChartControl;
+		[default, source] dispinterface _DChartControlEvents;
+	};
+};
