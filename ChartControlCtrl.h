@@ -29,6 +29,11 @@ public:
 	DECLARE_PROPPAGEIDS(CChartControlCtrl)
 	DECLARE_OLECTLTYPE(CChartControlCtrl)
 
+	enum SortOrder { SORT_NONE = 0, SORT_ASC, SORT_DESC };
+	CArray<int, int> m_sortedIndices;
+	SortOrder m_sortOrder;
+	void UpdateSortIndices();
+
 	afx_msg void OnClear();
 	afx_msg VARIANT GetColors();
 	afx_msg void SetColors(const VARIANT& varColors);
