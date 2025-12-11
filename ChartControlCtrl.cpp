@@ -361,7 +361,14 @@ void CChartControlCtrl::Sort(BOOL asc)
 {
 	if (asc)
 	{
-		m_sortOrder = SORT_ASC;
+		if (m_sortOrder == SORT_ASC)
+		{
+			m_sortOrder = SORT_NONE;
+		}
+		else
+		{
+			m_sortOrder = SORT_ASC;
+		}
 	}
 	else
 	{
